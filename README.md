@@ -5,7 +5,7 @@ Forma parte del Trabajo Práctico Obligatorio del Programa ``` Desarrollo Web Fu
 
 ### Especificaciones
 
-Se cumplen los requisitos solicitados para la 1° Entrega del TPO Obligatorio. Se encuentra alojado en el sitio [MmmmHelado](https://www.google.com/),
+Se encuentra alojado en el sitio [MmmmHelado](https://2de80.github.io/Mmmm/)
 
 ### GRUPO 6 - Integrantes
 - Guzmán, Mónica Valeria
