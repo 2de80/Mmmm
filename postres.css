@@ -1,0 +1,18 @@
+.header {
+    height: 150px;
+    background-color: #AE834D;
+    background-image: url(img/banner4.jpg);
+    padding: 30px;
+}
+
+
+.weight-600 {
+    font-weight: 600;
+    color:#24555A;
+    text-align: center;
+}
+.weight-400 {
+    font-weight: 400;
+    text-align: center;
+}
+
