@@ -5,7 +5,9 @@ Forma parte del Trabajo Práctico Obligatorio del Programa ``` Desarrollo Web Fu
 
 ### Especificaciones
 
-Se encuentra alojado en el sitio [Mmmm HELADO](https://2de80.github.io/Mmmm/)
+Se encuentra alojado en el sitio [Mmmm HELADO](https://2de80.github.io/Mmmm/) del servidor online de GitHub Pages.
+
+Además, consume una API Rest para mostrar la ubicación de las sucursales desde .... (falta desarrollar)
 
 ### GRUPO 6 - Integrantes
 - Guzmán, Mónica Valeria
