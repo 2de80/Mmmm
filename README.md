@@ -10,7 +10,7 @@ Se encuentra alojado en el sitio [Mmmm HELADO](https://2de80.github.io/Mmmm/) de
 Además, consume una API Rest para mostrar la ubicación de las sucursales desde .... (falta desarrollar)
 
 ### GRUPO 6 - Integrantes
-- Guzmán, Mónica Valeria
-- Melisa
-- Mónica
-- Matías
+- Álvarez, Melisa 
+- Carletti, Matías
+- Grimalt, Mónica
+- Guzmán, Mónica Valeria (Representante)
