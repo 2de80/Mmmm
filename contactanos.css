@@ -15,47 +15,48 @@ form {
     text-align: center;
 }
 
-  label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 18px;
-    
-  }
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
   
-  input,
-  textarea {
-    width: 100%;
-    padding: 12px 20px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-family: 'Fira Sans', sans-serif;
-  }
-  
-  input[type="submit"] {
-    background-color: #ae8340;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  input[type="submit"]:hover {
-    background-color:#24555A;
+}
 
-  }
+input,
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: 'Fira Sans', sans-serif;
+}
 
-  input[type="reset"] {
-    background-color: #ae8340;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  input[type="reset"]:hover {
-    background-color:#24555A;
+input[type="submit"] {
+  background-color: #ae8340;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color:#24555A;
+
+}
+
+input[type="reset"] {
+  background-color: #ae8340;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="reset"]:hover {
+  background-color:#24555A;
+}
