@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Fira Sans', sans-serif;
     color-verde: #24555A;
@@ -12,7 +11,11 @@ body {
     Color-ddl: #AE834D;
     Color-crema: #F8F0E0;
 }
+li {
+    list-style-type: none;
+  }
 
+/*  Menú horizontal desplegable
 .flex_menu {
     display: flex;
     flex-direction: row;
@@ -25,13 +28,62 @@ body {
 }
 
 .flex_menu li a:hover {
-    /* background-color:#f8ede0; */
+
     color: #452213
 }
 
 .flex_menu li:hover>ul {
     display: flex;
     flex-direction: column;
+} */
+/* Menú horizontal */
+.menu-nav {
+    width: 100%;
+    background-color: #f8f0e0;
+    color: #25565b;
+    padding: 1em;
+    /* background-image: url("img/banner4.jpg"); */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    align-items: center;
+  }
+.menu-nav .picture{}
+.menu-nav .img {
+    max-width: 80%;
+    height: auto;
+}
+.menu-nav .h1{}
+.menu-nav .button{
+    display: none;
+}
+.menu-nav .nav{}
+.menu-nav .svg{
+    width:2em;
+    height:2em;
+    fill:white;
+  }
+.menu-nav .ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end; 
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+.menu-nav .li{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+.menu-nav .nav .a{
+    text-decoration: none;
+    color: inherit 
 }
 
 .grid {
@@ -62,6 +114,7 @@ body {
 .header {
     height: 500px;
     background-color: #AE834D;
+    /* ? copie en estilos en linea porque la ruta no funciona desde el css */
     background-image: url(img/banner4.jpg);
 
 }
@@ -231,7 +284,7 @@ nav a:hover {
 /* MISSION */
 
 .empresa-01 {
-
+    /* ? copie en estilos en linea porque la ruta no funciona desde el css */
     background-image: url(img/Fondo-seccion-gustos-6.jpg);
 }
 
@@ -394,5 +447,50 @@ footer {
 
     .textos-empresa h3 {
         margin: 0px;
+    }
+}
+/* Menú horizontal hamburguesa*/
+@media screen and (max-width:1080px){
+    .menu-nav .button{
+        display: block;
+        cursor: pointer;
+    }
+    /* Forzar mantener un hancho del 100% en .nav 
+    hace ubicar .nav por debajo al disminuir los px */
+    .menu-nav .nav{
+        width:100%; 
+        display: none;
+    }
+    .menu-nav .nav.activo{
+        display: block;
+    }
+    /* Cambio el eje flex de los elementos ul */
+    .menu-nav .ul{
+        flex-direction: column;
+        }
+    .menu-nav .li{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .menu-nav .nav.activo{
+        /* display: block; */
+        height:50vh;
+        pointer-events: auto;
+    }
+}
+@media screen and (max-width:480px) {
+    .menu-nav{
+        flex-direction: column;
+    }
+    .menu-nav .picture .a{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .menu-nav .img {
+        max-width: 170px;
     }
 }
