@@ -46,7 +46,7 @@ def create_database(table_name):
     conn = sqlite3.connect(DATABASE) # crea la DB
     conn.close()
     create_table(table_name)
-
+# También predermino los IDs por tipo de producto y sus respectivas descripciones
 def insertIdTipoProducto():
     conn = get_db_connection(DATABASE)
     cursor = conn.cursor()
@@ -63,18 +63,18 @@ def insertIdTipoProducto():
     conn.close()
 
 # Implementar esta función para que se seobrescriban las claves y no se dupliquen con cada corrida (no funciona)
-def alterTable():
-    conn = get_db_connection(DATABASE)
-    cursor = conn.cursor()
-    cursor.execute("""
-    ALTER TABLE `tipodeproducto`
-    ADD PRIMARY KEY (`idTipoProducto`),
-    ADD UNIQUE KEY `idTipoProducto` (`idTipoProducto`);
-    """
-    )
-    conn.commit()
-    cursor.close()
-    conn.close()
+# def alterTable():
+#     conn = get_db_connection(DATABASE)
+#     cursor = conn.cursor()
+#     cursor.execute("""
+#     ALTER TABLE `tipodeproducto`
+#     ADD PRIMARY KEY (`idTipoProducto`),
+#     ADD UNIQUE KEY `idTipoProducto` (`idTipoProducto`);
+#     """
+#     )
+#     conn.commit()
+#     cursor.close()
+#     conn.close()
 
 # Crear la base de datos y la tabla si no existen
 DATABASE    = 'inventario.db'
@@ -83,7 +83,7 @@ if not os.path.exists(DATABASE):
     for table_name in table_names:
         create_database(table_name=table_name)
 insertIdTipoProducto()
-# alterTable()s
+# alterTable()
 """
 ### testear creación de las tablas
 import pandas as pd
@@ -126,11 +126,11 @@ class Producto():
                   , nuevo_nombre
                   , nuevo_descripcion
                   , nuevo_StockTotal):
-        self.idProducto     = nuevo_idProducto # Modifica el nombre
-        self.idTipoProducto = nuevo_idTipoProducto # Modifica el precio
-        self.nombre         = nuevo_nombre # Modifica la cantidad
-        self.descripcion    = nuevo_descripcion # Modifica el id del producto
-        self.StockTotal     = nuevo_StockTotal # Modifica la imagen del
+        self.idProducto     = nuevo_idProducto # Modifica el id del proucto
+        self.idTipoProducto = TipoProducto.idTipoProducto  # Modifica el id del producto
+        self.nombre         = nuevo_nombre # Modifica el nombre
+        self.descripcion    = nuevo_descripcion # Modifica la descripcion del producto
+        self.StockTotal     = nuevo_StockTotal # Modifica el stock total
 # -------------------------------------------------------------------
 # Definimos la clase "PrecioPorCantidad"
 # -------------------------------------------------------------------
@@ -139,40 +139,55 @@ class PrecioPorCantidad():
                 , idProducto
                 , precio
                 , fecha
-                , scantidad): 
-        self.idProducto = idProducto
+                , cantidad): 
+        self.idProducto = Producto.idProducto
         self.precio     = precio
         self.fecha      = fecha
-        self.cantidad   = scantidad
+        self.cantidad   = cantidad
 # -------------------------------------------------------------------
 # Definimos la clase "Inventario"
 # -------------------------------------------------------------------
 class Inventario:
     def __init__(self):
-        self.conexion = get_db_connection() # Me conecto con la DB
-        self.cursor = self.conexion.cursor() # uso esa conexion para generar un cursor 
+        self.conexion   = get_db_connection() # Me conecto con la DB
+        self.cursor     = self.conexion.cursor() # uso esa conexion para generar un cursor 
                                             # encargado de ejecutar sentencias SQL
-
     def agregar_producto(self
-                        , id_producto
+                        , idProducto
+                        , idTipoProducto # viene de la clase TipoProducto
                         , nombre
-                        , precio
-                        , cantidad
-                        , imagen):
+                        , descripcion
+                        , stockTotal):
         # Consulto si el producto existe, si es así retorno un msj
-        producto_existente = self.consultar_producto(id_producto)
+        producto_existente = self.consultar_producto(idProducto)
         if producto_existente:
             return jsonify({'message': 'Ya existe un producto con ese código.'}), 400
-        nuevo_producto = Producto(id_producto
+        nuevo_producto = Producto(idProducto
+                                , idTipoProducto
                                 , nombre
-                                , precio
-                                , cantidad
-                                , imagen)
+                                , descripcion
+                                , stockTotal)
         self.cursor.execute("INSERT INTO productos VALUES (?, ?, ?, ?)",
-                        (id_producto
+                        ( idProducto
+                        , idTipoProducto
                         , nombre
-                        , precio
-                        , cantidad
-                        , imagen))
+                        , descripcion
+                        , stockTotal))
         self.conexion.commit()
         return jsonify({'message': 'Producto agregado correctamente.'}), 200
+    def agregar_precioxcantidad(self
+                                , idProducto
+                                , precio
+                                , fecha
+                                , cantidad):
+        precioxcantidad = PrecioPorCantidad(idProducto
+                                            , precio
+                                            , fecha
+                                            , cantidad)
+        self.cursor.execute("INSERT INTO precioxcantidad VALUES (?, ?, ?, ?)",
+                        ( idProducto
+                        , precio
+                        , fecha
+                        , cantidad))
+        self.conexion.commit()
+        return jsonify({'message': 'Precio x cantidad agregado correctamente.'}), 200
