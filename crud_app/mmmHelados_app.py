@@ -191,3 +191,4 @@ class Inventario:
                         , cantidad))
         self.conexion.commit()
         return jsonify({'message': 'Precio x cantidad agregado correctamente.'}), 200
+    
