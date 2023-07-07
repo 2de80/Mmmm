@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listado de Productos</title>
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+<body>
+    <a href="http://127.0.0.1:5500/index.html">
+        <img class="logo-giro" src="img/logo-01.svg" width="100" alt="Logo">
+        <img class="animate__backInUp" src="img/logo-02.svg" width="160" alt="Logo">
+    </a>
+
+<h2>Listado de productos</h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Descripción</th>
+<th>Cantidad</th>
+<th>Precio</th>
+</tr>
+</thead>
+<tbody id="tablaProductos">
+</tbody>
+</table>
+<br>
+<div class="contenedor-centrado">
+<a href="index.html">Menu principal</a>
+</div>
+<script>
+//const URL = "http://127.0.0.1:5000/"
+const URL = "https://xxxxx.pythonanywhere.com/"
+// Realizamos la solicitud GET al servidor para obtener todos los productos
+fetch(URL + 'productos')
+
+.then(function (response) {
+if (response.ok) {
+return response.json(); // Parseamos la respuesta JSON
+} else {
+// Si hubo un error, lanzar explícitamente una excepción
+// para ser "catcheada" más adelante
+throw new Error('Error al obtener los productos.');
+}
+})
+.then(function (data) {
+var tablaProductos = document.getElementById('tablaProductos');
+// Iteramos sobre los productos y agregamos filas a la tabla
+data.forEach(function (producto) {
+var fila = document.createElement('tr');
+fila.innerHTML = '<td>' + producto.codigo + '</td>' +
+'<td>' + producto.descripcion + '</td>' +
+'<td align="right">' + producto.cantidad + '</td>' +
+'<td align="right">&nbsp; &nbsp;&nbsp; &nbsp;' + producto.precio + '</td>';
+tablaProductos.appendChild(fila);
+});
+})
+.catch(function (error) {
+// Código para manejar errores
+alert('Error al obtener los productos.');
+});
+</script>
+</body>
+</html>
