@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MMMM Helados</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
+
+<style>
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    background-image: url(img/banner4.jpg);
+}
+
+.container {
+  margin-top: 30px;
+ 
+  
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#items {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+aside {
+  margin-top: 20px;
+}
+
+h1 {
+  color:  #25565b;
+}
+
+h5 {
+  margin-bottom: 10px;
+  color: #C5354B;
+
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#total {
+  font-weight: bold;
+}
+
+.btn-carrito {
+  margin-top: 10px;
+  background-color: #24555A;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;  
+}
+
+.btn-carrito:hover {
+    background-color:#AE834D;
+    }
+
+
+.menu-nav {
+    background-color: #f8f0e0;
+    color: #25565b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo-giro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    margin-right: 15px;
+    animation: spin 5s linear infinite;
+    /* ajusta la duración y el tipo de animación */
+}
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.logo img {
+    max-width: 80%;
+    height: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: #25565b;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #c5374c;
+}
+
+.cta {
+    width: 130px;
+    background: #24555A;
+    color: #F8F0E0;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    width: 90%;
+    max-width: 1100px;
+    height: 100%;
+    margin: auto;
+    gap: 10px;
+    overflow: hidden;
+    align-items: center;
+}
+
+
+/* Footer */
+footer {
+    background: #24555A;
+    color: #F8F0E0;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.textos-footer {
+    grid-column: 1/-1;
+}
+
+[class^="footer-item"] a {
+    color: #F8F0E0;
+    font-size: 30px;
+
+}
+
+[class^="footer-item"] {
+    grid-column: span 3;
+}
+
+/* Definición de la animación "tada" */
+@keyframes tada {
+      0% {
+        transform: scale3d(1, 1, 1);
+      }
+      10%, 20% {
+        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+      }
+      30%, 50%, 70%, 90% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+      }
+      40%, 60%, 80% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+      }
+      100% {
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+
+
+
+
+.item:hover {
+    animation: tada;
+    animation-duration: 1s;
+}
+
+.footer-item1:hover {
+    animation: tada;
+    animation-duration: 1s;
+}
+
+.footer-item2:hover {
+    animation: tada;
+    animation-duration: 1s;
+}
+
+.footer-item3:hover {
+    animation: tada;
+    animation-duration: 1s;
+    color: #C5354B;
+}
+
+.footer-item4:hover {
+    animation: tada;
+    animation-duration: 1s;
+}
+
+@media screen and (max-width:800px) {
+    .header {
+        height: auto;
+    }
+
+    .grid {
+        gap: 30px;
+    }
+
+    .img-hero,
+    .textos-hero {
+        grid-column: 1/-1;
+    }
+
+    .img-hero {
+        text-align: center;
+    }
+
+    .textos-hero {
+        margin: 40px;
+        font-size: 1rem;
+    }
+
+    .productos {
+        height: auto;
+        margin-top: 40px;
+    }
+
+    .item {
+        width: 90%;
+        margin: 40px 0;
+        height: auto;
+        padding: 40px;
+    }
+
+    .img-empresa {
+        grid-column: 1/-1;
+        grid-row: 2/3;
+        text-align: center;
+    }
+
+    .textos-empresa {
+        grid-column: 1/-1;
+        grid-row: 1/2;
+        align-self: center;
+    }
+
+}
+
+
+@media screen and (max-width:400px) {
+    .img {
+        max-width: 170px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .item {
+        width: 90%;
+        flex-shrink: 0;
+    }
+
+    .number {
+        width: 55%;
+        border-bottom: 1px dotted #AE834D;
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+    }
+
+    .textos-empresa h3 {
+        margin: 15px;
+    }
+
+    [class^="footer-item"] {
+        grid-column: 1/-1;
+    }
+
+    .textos-hero {
+        font-size: 0.8rem;
+    }
+
+    .textos-empresa h3 {
+        margin: 0px;
+    }
+}
+/* Menú horizontal hamburguesa*/
+@media screen and (max-width:1080px){
+    .menu-nav .button{
+        display: block;
+        cursor: pointer;
+    }
+    /* Forzar mantener un hancho del 100% en .nav 
+    hace ubicar .nav por debajo al disminuir los px */
+    .menu-nav .nav{
+        width:100%; 
+        display: none;
+    }
+    .menu-nav .nav.activo{
+        display: block;
+    }
+    /* Cambio el eje flex de los elementos ul */
+    .menu-nav .ul{
+        flex-direction: column;
+        }
+    .menu-nav .li{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .menu-nav .nav.activo{
+        /* display: block; */
+        height:50vh;
+        pointer-events: auto;
+    }
+}
+@media screen and (max-width:480px) {
+    .menu-nav{
+        flex-direction: column;
+    }
+    .menu-nav .picture .a{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .menu-nav .img {
+        max-width: 170px;
+    }
+}
+
+
+
+</style>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // Variables
+          const baseDeDatos = [
+              {
+                  id: 1,
+                  nombre: '1/4 Kg de Helado',
+                  precio: 1400,
+                  imagen: 'img/1-4-kg-helado-copia.png'
+              },
+              {
+                  id: 2,
+                  nombre: '1/2 Kg de Helado',
+                  precio: 2300,
+                  imagen: 'img/1-2-kg-helado.png'
+              },
+              {
+                  id: 3,
+                  nombre: '1 Kg de Helado',
+                  precio: 4100,
+                  imagen: 'img/1-kg-de-helado.png'
+              },
+              {
+                  id: 4,
+                  nombre: 'Bombón Suizo',
+                  precio: 2700,
+                  imagen: 'img/postres_1-tienda.png'
+              },
+
+              {
+                  id: 5,
+                  nombre: 'Bombón Escocés',
+                  precio: 2700,
+                  imagen: 'img/postres_2-tienda.png'
+              },
+
+              {
+                  id: 6,
+                  nombre: 'Almendrado',
+                  precio: 2700,
+                  imagen: 'img/postres_3-tienda.png'
+              },
+
+              {
+                  id: 7,
+                  nombre: 'Paleta Argenta',
+                  precio: 800,
+                  imagen: 'img/argenta-tienda.png'
+              },
+
+              {
+                  id: 8,
+                  nombre: 'Paleta Minion',
+                  precio: 800,
+                  imagen: 'img/minion-tienda.png'
+              },
+
+              {
+                  id: 9,
+                  nombre: 'Paleta Chantilly',
+                  precio: 800,
+                  imagen: 'img/paleta-tienda.png'
+              },
+
+
+
+          ];
+
+          let carrito = [];
+          const divisa = '$';
+          const DOMitems = document.querySelector('#items');
+          const DOMcarrito = document.querySelector('#carrito');
+          const DOMtotal = document.querySelector('#total');
+          const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+
+          // Funciones
+
+          /**
+          * Dibuja todos los productos a partir de la base de datos. No confundir con el carrito
+          */
+          function renderizarProductos() {
+              baseDeDatos.forEach((info) => {
+                  // Estructura
+                  const miNodo = document.createElement('div');
+                  miNodo.classList.add('card', 'col-sm-4');
+                  // Body
+                  const miNodoCardBody = document.createElement('div');
+                  miNodoCardBody.classList.add('card-body');
+                  // Titulo
+                  const miNodoTitle = document.createElement('h5');
+                  miNodoTitle.classList.add('card-title');
+                  miNodoTitle.textContent = info.nombre;
+                  // Imagen
+                  const miNodoImagen = document.createElement('img');
+                  miNodoImagen.classList.add('img-fluid');
+                  miNodoImagen.setAttribute('src', info.imagen);
+                  // Precio
+                  const miNodoPrecio = document.createElement('p');
+                  miNodoPrecio.classList.add('card-text');
+                  miNodoPrecio.textContent = `${divisa} ${info.precio}`;
+                  // Boton 
+                  const miNodoBoton = document.createElement('button');
+                  miNodoBoton.classList.add('btn', 'btn-secondary');
+                  miNodoBoton.textContent = '+';
+                  miNodoBoton.setAttribute('marcador', info.id);
+                  miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
+                  // Insertamos
+                  miNodoCardBody.appendChild(miNodoImagen);
+                  miNodoCardBody.appendChild(miNodoTitle);
+                  miNodoCardBody.appendChild(miNodoPrecio);
+                  miNodoCardBody.appendChild(miNodoBoton);
+                  miNodo.appendChild(miNodoCardBody);
+                  DOMitems.appendChild(miNodo);
+              });
+          }
+
+          /**
+          * Evento para añadir un producto al carrito de la compra
+          */
+          function anyadirProductoAlCarrito(evento) {
+              // Anyadimos el Nodo a nuestro carrito
+              carrito.push(evento.target.getAttribute('marcador'))
+              // Actualizamos el carrito 
+              renderizarCarrito();
+
+          }
+
+          /**
+          * Dibuja todos los productos guardados en el carrito
+          */
+          function renderizarCarrito() {
+              // Vaciamos todo el html
+              DOMcarrito.textContent = '';
+              // Quitamos los duplicados
+              const carritoSinDuplicados = [...new Set(carrito)];
+              // Generamos los Nodos a partir de carrito
+              carritoSinDuplicados.forEach((item) => {
+                  // Obtenemos el item que necesitamos de la variable base de datos
+                  const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                      // ¿Coincide las id? Solo puede existir un caso
+                      return itemBaseDatos.id === parseInt(item);
+                  });
+                  // Cuenta el número de veces que se repite el producto
+                  const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+                      // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
+                      return itemId === item ? total += 1 : total;
+                  }, 0);
+                  // Creamos el nodo del item del carrito
+                  const miNodo = document.createElement('li');
+                  miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+                  miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa}`;
+                  // Boton de borrar
+                  const miBoton = document.createElement('button');
+                  miBoton.classList.add('btn', 'btn-secondary', 'mx-5');
+                  miBoton.textContent = 'X';
+                  miBoton.style.marginLeft = '1rem';
+                  miBoton.dataset.item = item;
+                  miBoton.addEventListener('click', borrarItemCarrito);
+                  // Mezclamos nodos
+                  miNodo.appendChild(miBoton);
+                  DOMcarrito.appendChild(miNodo);
+              });
+             // Renderizamos el precio total en el HTML
+             DOMtotal.textContent = calcularTotal();
+          }
+
+          /**
+          * Evento para borrar un elemento del carrito
+          */
+          function borrarItemCarrito(evento) {
+              // Obtenemos el producto ID que hay en el boton pulsado
+              const id = evento.target.dataset.item;
+              // Borramos todos los productos
+              carrito = carrito.filter((carritoId) => {
+                  return carritoId !== id;
+              });
+              // volvemos a renderizar
+              renderizarCarrito();
+          }
+
+          /**
+           * Calcula el precio total teniendo en cuenta los productos repetidos
+           */
+          function calcularTotal() {
+              // Recorremos el array del carrito 
+              return carrito.reduce((total, item) => {
+                  // De cada elemento obtenemos su precio
+                  const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                      return itemBaseDatos.id === parseInt(item);
+                  });
+                  // Los sumamos al total
+                  return total + miItem[0].precio;
+              }, 0).toFixed(2);
+          }
+
+          /**
+          * Varia el carrito y vuelve a dibujarlo
+          */
+          function vaciarCarrito() {
+              // Limpiamos los productos guardados
+              carrito = [];
+              // Renderizamos los cambios
+              renderizarCarrito();
+          }
+
+          // Eventos
+          DOMbotonVaciar.addEventListener('click', vaciarCarrito);
+
+          // Inicio
+          renderizarProductos();
+          renderizarCarrito();
+        });
+    </script>
+</head>
+
+
+<body>
+
+    <div class="menu-nav">
+        <div class="logo">
+            <a href="index.html">
+                <img class="logo-giro" src="img/logo-01.svg" width="100" alt="Logo">
+                <img class="animate__backInUp" src="img/logo-02.svg" width="160" alt="Logo">
+            </a>
+        </div>
+        
+        <nav class="nav">
+            <ul class="ul">
+                <li class="li">
+                    <a class="a" href="sabores.html">Sabores</a>
+                </li>
+                <li class="li">
+                    <a class="a" href="postres.html">Postres</a>
+                </li>
+                <li class="li">
+                    <a class="a" href="paletas.html">Paletas</a>
+                </li>
+                <li class="li">
+                    <a class="a" href="argentina_map.html">Sucursales</a>
+                </li>
+                <li class="li">
+                  <a class="a" href="carrito.html">
+                    Carrito
+                  </a>
+              </li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <!-- Elementos generados a partir del JSON -->
+            <main id="items" class="col-sm-8 row"></main>
+            <!-- Carrito -->
+            <aside class="col-sm-4">
+                <h1>CARRITO</h1>
+                <!-- Elementos del carrito -->
+                <ul id="carrito" class="list-group"></ul>
+                <hr>
+                <!-- Precio total -->
+                <p class="text-right">Total: $<span id="total"></span></p>
+
+                <button id="boton-vaciar" class="btn btn-carrito">Vaciar</button>
+            </aside>
+        </div>
+    </div>
+</body>
+
+<footer>
+    
+    <div class="grid">
+        <div class="textos-footer">
+            <a href="contactanos.html" class="cta">CONTACTANOS</a><br>
+
+        </div>
+        <div class="footer-item1">
+            <a href="#">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+        <div class="footer-item2">
+            <a href="#">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </div>
+        <div class="footer-item3">
+            <a href="#">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <div class="footer-item4">
+            <a href="#">
+                <i class="fab fa-chrome"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+   
+              
+<script src="https://kit.fontawesome.com/f955c68031.js" crossorigin="anonymous"></script>
+
+</html>
+
