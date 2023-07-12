@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel de Imágenes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <a href="http://127.0.0.1:5500/index.html">
+        <img class="logo-giro" src="static/img/logo-01.svg" width="100" alt="Logo">
+        <img class="animate__backInUp" src="static/img/logo-02.svg" width="160" alt="Logo">
+    </a>
+
+    <h1>CRUD de Carruseles de Productos</h1>
+
+    <h2>Sabores de Helados</h2>
+    <div class="carousel" id="carousel-sabores">
+        {% for sabor in sabores %}
+        <div class="slide">
+            <img src="{{ url_for('static', filename='uploads/' ~sabor.id~ '.jpeg')  }}">
+            <div class="caption">{{ sabor.nombre }}</div>
+            <form class="delete-form" action="{{ url_for('eliminar_producto', id_sabor=sabor.id) }}" method="post">
+                <button type="submit">Eliminar</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Postres</h2>
+    <div id="carousel-postres">
+        {% for postre in postres %}
+        <div class="slide">
+            <!-- <img src="{{ url_for('static', filename='uploads/' ~postre.id~ '.jpeg') }}"> -->
+            <img src="/static/uploads/{{ postre.id }}.jpeg">
+            <div class="caption">{{ postre.nombre }}</div>
+            <form class="delete-form" action="{{ url_for('eliminar_producto', id_postre=postre.id) }}" method="post">
+                <button type="submit">Eliminar</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Paletas</h2>
+    <div id="carousel-paletas">
+        {% for paleta in paletas %}
+        <div class="slide">
+            <img src="{{ url_for('static', filename='uploads/' ~paleta.id~ '.jpeg') }}"> 
+            <div class="caption">{{ paleta.nombre }}</div>
+            <form class="delete-form" action="{{ url_for('eliminar_producto', id_paleta=paleta.id) }}" method="post">
+                <button type="submit">Eliminar</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Agregar Sabor de Helado</h2>
+    <form id="agregar-sabor-form" action="{{ url_for('agregar_producto') }}" method="post" enctype="multipart/form-data">
+        <label for="id-producto">ID Producto:</label>
+        <input type="text" id="id-producto" name="id_producto" required>
+        <label for="nombre-sabor">Nombre:</label>
+        <input type="text" id="nombre-sabor" name="nombre" required>
+        <input type="hidden" name="tipo_producto" value="sabores">
+        <label for="archivo-sabor">Archivo:</label>
+        <input type="file" id="archivo-sabor" name="imagen" accept="image/jpeg" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Agregar Postre</h2>
+    <form id="agregar-postre-form" action="{{ url_for('agregar_producto') }}" method="post" enctype="multipart/form-data">
+        <label for="nombre-postre">Nombre:</label>
+        <!-- cambio name="nombre-postre" por "nombre" -->
+        <input type="text" id="nombre-postre" name="nombre" required>
+        <input type="hidden" name="tipo_producto" value="postres">
+        <label for="archivo-postre">Archivo:</label>
+        <!-- cambio name="archivo-postre" por "imagen" -->
+        <input type="file" id="archivo-postre" name="imagen" accept="image/jpeg" required>
+
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Agregar Paleta</h2>
+    <form id="agregar-paleta-form" action="{{ url_for('agregar_producto') }}" method="post" enctype="multipart/form-data">
+        <label for="nombre-paleta">Nombre:</label>
+        <!-- cambio name="nombre-paleta" por "nombre" -->
+        <input type="text" id="nombre-paleta" name="nombre" required>
+        <input type="hidden" name="tipo_producto" value="paletas">
+        <label for="archivo-paleta">Archivo:</label>
+        <!-- cambio name="archivo-postre" por "imagen" -->
+        <input type="file" id="archivo-paleta" name="imagen" accept="image/jpeg" required>
+
+        <button type="submit">Agregar</button>
+    </form>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- <script>
+        var carouselSabores = document.getElementById('carousel-sabores');
+        var slidesSabores = carouselSabores.getElementsByClassName('slide');
+        var currentSlideIndex = 0;
+
+        function showSlide(index) {
+        // Ocultar todas las diapositivas
+        for (var i = 0; i < slidesSabores.length; i++) {
+            slidesSabores[i].classList.remove('active');
+        }
+
+        // Mostrar la diapositiva actual
+        slidesSabores[index].classList.add('active');
+        }
+
+        function nextSlide() {
+        currentSlideIndex++;
+        if (currentSlideIndex >= slidesSabores.length) {
+            currentSlideIndex = 0;
+        }
+        showSlide(currentSlideIndex);
+        }
+
+        function prevSlide() {
+        currentSlideIndex--;
+        if (currentSlideIndex < 0) {
+            currentSlideIndex = slidesSabores.length - 1;
+        }
+        showSlide(currentSlideIndex);
+        }
+
+        // Mostrar la primera diapositiva al cargar la página
+        showSlide(currentSlideIndex);
+
+        // Agregar eventos para avanzar y retroceder en el carrusel
+        carouselSabores.addEventListener('click', nextSlide);
+
+        // Obtener las imágenes desde el servidor Flask y mostrarlas en el carrusel
+        {% for sabor in sabores %}
+        var image = new Image();
+        image.onload = function() {
+        // Crear una nueva diapositiva y establecer la imagen cargada como su contenido
+        var slide = document.createElement('div');
+        slide.classList.add('slide');
+        slide.appendChild(this);
+
+        // Agregar la diapositiva al carrusel
+        carouselSabores.appendChild(slide);
+
+        // Actualizar la lista de diapositivas
+        slidesSabores = carouselSabores.getElementsByClassName('slide');
+        };
+
+        // Obtener la ruta de acceso de la imagen desde el servidor Flask
+        var imageUrl = "{{ url_for('static', filename='uploads/' ~ sabor.id ~ '.jpg') }}";
+
+        // Establecer la ruta de acceso de la imagen en la propiedad src de la imagen
+        image.src = imageUrl;
+        {% endfor %}
+    </script> -->
+</body>
+</html>
